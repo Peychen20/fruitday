@@ -408,18 +408,109 @@
     </div>
   </section>
 
-  <!-- Google 表單 -->
-  <section class="form-section" id="contact">
-    <div class="form-container">
-      <div class="form-header">
-        <h2>訂購表單</h2>
-        <p>填寫表單，我們會盡快與您聯絡</p>
-      </div>
-      <div class="form-content">
-        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd9A-0bUmkCy-PR-JHQCl_k7CGjtHT1hrTeL0nEkthkqug-fw/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
-      </div>
+  <!-- 訂購表單 -->
+<section class="form-section" id="contact">
+  <div class="form-container">
+    <div class="form-header">
+      <h2>訂購表單</h2>
+      <p>填寫表單，我們會盡快與您聯絡</p>
     </div>
-  </section>
+    <div class="form-content">
+      <form id="orderForm" style="max-width: 500px; margin: 0 auto;">
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">姓名 *</label>
+          <input type="text" name="name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">電話 *</label>
+          <input type="tel" name="phone" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">電郵 *</label>
+          <input type="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">地址 *</label>
+          <input type="text" name="address" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">選擇水果 *</label>
+          <select name="fruit" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+            <option value="">-- 請選擇 --</option>
+            <option value="蘋果">🍎 蘋果</option>
+            <option value="柳橙">🍊 柳橙</option>
+            <option value="香蕉">🍌 香蕉</option>
+            <option value="草莓">🍓 草莓</option>
+            <option value="西瓜">🍉 西瓜</option>
+            <option value="奇異果">🥝 奇異果</option>
+            <option value="混合">🎁 混合水果禮盒</option>
+          </select>
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">數量 (盒) *</label>
+          <input type="number" name="quantity" min="1" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+        </div>
+
+        <div style="margin-bottom: 20px;">
+          <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">備註</label>
+          <textarea name="note" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; min-height: 100px; resize: vertical;"></textarea>
+        </div>
+
+        <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.3s;">
+          送出訂單
+        </button>
+
+        <div id="successMessage" style="display: none; margin-top: 20px; padding: 15px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 6px; color: #155724; text-align: center;">
+          ✅ 訂單已送出！我們會盡快與您聯絡。
+        </div>
+
+        <div id="errorMessage" style="display: none; margin-top: 20px; padding: 15px; background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 6px; color: #721c24; text-align: center;">
+          ❌ 送出失敗，請稍後重試。
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.getElementById('orderForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = {
+      name: document.querySelector('input[name="name"]').value,
+      phone: document.querySelector('input[name="phone"]').value,
+      email: document.querySelector('input[name="email"]').value,
+      address: document.querySelector('input[name="address"]').value,
+      fruit: document.querySelector('select[name="fruit"]').value,
+      quantity: document.querySelector('input[name="quantity"]').value,
+      note: document.querySelector('textarea[name="note"]').value
+    };
+
+    const scriptUrl = 'https://script.google.com/macros/s/AKfycby925GbRMm4I92s8T1DRrCcBppSeNXSPVMaUhoXC3Lq2OW0AFrfNkwP8kK0qDrS29tb/exec';
+
+    fetch(scriptUrl, {
+      method: 'POST',
+      body: JSON.stringify(formData),
+      mode: 'no-cors'
+    })
+    .then(() => {
+      document.getElementById('orderForm').reset();
+      document.getElementById('successMessage').style.display = 'block';
+      document.getElementById('errorMessage').style.display = 'none';
+      setTimeout(() => {
+        document.getElementById('successMessage').style.display = 'none';
+      }, 5000);
+    })
+    .catch(() => {
+      document.getElementById('errorMessage').style.display = 'block';
+    });
+  });
+</script>
 
   <!-- 頁腳 -->
   <footer>
