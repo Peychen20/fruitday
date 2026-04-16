@@ -47,6 +47,7 @@
       z-index: 100;
       box-shadow: 0 2px 10px rgba(0,0,0,0.1);
       border-bottom: 2px solid #497552;
+      height: 126px;
     }
 
     nav {
@@ -55,8 +56,8 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 3px 30px;
-      min-height: 126px;
+      padding: 0 30px;
+      height: 126px;
     }
 
     .logo {
@@ -65,6 +66,7 @@
       color: #333;
       display: flex;
       align-items: center;
+      justify-content: center;
       flex-shrink: 0;
       width: 140px;
       height: 120px;
@@ -83,6 +85,8 @@
       list-style: none;
       display: flex;
       gap: 30px;
+      align-items: center;
+      height: 100%;
     }
 
     nav a {
@@ -90,6 +94,9 @@
       text-decoration: none;
       font-weight: 500;
       transition: opacity 0.3s;
+      display: flex;
+      align-items: center;
+      height: 100%;
     }
 
     nav a:hover {
@@ -98,9 +105,8 @@
 
     /* Banner */
     .banner {
-      background: url('banner.jpg') center/contain no-repeat;
+      background: url('banner.jpg') center/cover no-repeat;
       background-attachment: scroll;
-      background-color: #f0f0f0;
       min-height: 500px;
       display: flex;
       align-items: center;
@@ -358,11 +364,12 @@
 
       header {
         top: 65px;
+        height: 104px;
       }
 
       nav {
-        padding: 2px 20px;
-        min-height: 104px;
+        padding: 0 20px;
+        height: 104px;
       }
 
       .logo {
