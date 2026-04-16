@@ -116,21 +116,26 @@
     }
 
     .banner p {.order-button {
-  display: inline-block;
-  padding: 18px 60px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 22px 50px;
   background: #497552;
   color: white;
   text-decoration: none;
-  border-radius: 50px;
-  font-size: 18px;
+  border-radius: 100px;
+  font-size: 20px;
   font-weight: bold;
-  transition: transform 0.3s, box-shadow 0.3s;
+  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
   cursor: pointer;
+  white-space: nowrap;
 }
 
 .order-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+  background: #3d614a;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
 }
 
       font-size: 16px;
@@ -355,7 +360,7 @@
  <!-- Banner -->
 <section class="banner">
   <div class="banner-content">
-    <a href="#contact" class="order-button">前往選購</a>
+    <a href="#contact" class="order-button">前往選購 <span style="font-size: 24px;">»</span></a>
   </div>
 </section>
 
