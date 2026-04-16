@@ -104,14 +104,10 @@
       background: rgba(0,0,0,0.4);
     }
 
-    .banner-content {
-      position: relative;
-      z-index: 1;
-      padding: 40px 30px;
-    }
-
     .order-button {
-      display: inline-block;
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
       padding: 18px 50px;
       background-color: #497552;
       color: white;
@@ -122,6 +118,7 @@
       font-weight: bold;
       cursor: pointer;
       transition: all 0.3s ease;
+      z-index: 2;
     }
 
     .order-button:hover {
@@ -324,6 +321,13 @@
       .product-grid {
         grid-template-columns: 1fr;
       }
+
+      .order-button {
+        bottom: 20px;
+        right: 20px;
+        padding: 14px 35px;
+        font-size: 16px;
+      }
     }
   </style>
 </head>
@@ -348,9 +352,7 @@
 
   <!-- Banner -->
   <section class="banner">
-    <div class="banner-content">
-      <button class="order-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">前往選購 »</button>
-    </div>
+    <button class="order-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">前往選購 »</button>
   </section>
 
   <!-- 關於我們 -->
