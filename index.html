@@ -85,13 +85,15 @@
     /* Banner */
     .banner {
       background: url('banner.jpg') center/cover no-repeat;
-      min-height: 400px;
+      background-attachment: fixed;
+      min-height: 500px;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       text-align: center;
       position: relative;
+      overflow: hidden;
     }
 
     .banner::before {
@@ -102,12 +104,13 @@
       right: 0;
       bottom: 0;
       background: rgba(0,0,0,0.4);
+      z-index: 1;
     }
 
     .order-button {
       position: absolute;
-      bottom: 30px;
-      right: 30px;
+      bottom: 50px;
+      right: 50px;
       padding: 18px 50px;
       background-color: #497552;
       color: white;
@@ -308,25 +311,149 @@
       color: #999;
     }
 
-    /* 響應式 */
+    /* 響應式設計 - 平板 */
+    @media (max-width: 1024px) {
+      .banner {
+        min-height: 400px;
+      }
+
+      .order-button {
+        padding: 16px 40px;
+        font-size: 18px;
+        bottom: 40px;
+        right: 40px;
+      }
+    }
+
+    /* 響應式設計 - 手機 */
     @media (max-width: 768px) {
-      .about-content {
-        grid-template-columns: 1fr;
+      .promo {
+        padding: 15px 20px;
+      }
+
+      .promo h2 {
+        font-size: 18px;
+        margin-bottom: 5px;
+      }
+
+      .promo p {
+        font-size: 12px;
+      }
+
+      nav {
+        padding: 2px 20px;
+      }
+
+      .logo img {
+        height: 80px;
       }
 
       nav ul {
         gap: 15px;
+        font-size: 14px;
+      }
+
+      .banner {
+        min-height: 300px;
+        background-attachment: scroll;
+      }
+
+      .order-button {
+        padding: 14px 35px;
+        font-size: 16px;
+        bottom: 25px;
+        right: 25px;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding: 40px 0;
+      }
+
+      .about {
+        padding: 40px 20px;
+      }
+
+      .about h2 {
+        font-size: 28px;
+      }
+
+      .products {
+        padding: 40px 20px;
+      }
+
+      .section-title {
+        font-size: 28px;
+        margin-bottom: 30px;
       }
 
       .product-grid {
         grid-template-columns: 1fr;
+        gap: 20px;
+      }
+
+      .product-image {
+        height: 150px;
+        font-size: 45px;
+      }
+
+      .form-section {
+        padding: 40px 20px;
+      }
+
+      .form-header {
+        padding: 30px 20px;
+      }
+
+      .form-header h2 {
+        font-size: 22px;
+      }
+
+      .form-content {
+        padding: 20px;
+      }
+
+      footer {
+        padding: 30px 20px;
+      }
+
+      .footer-content {
+        gap: 20px;
+      }
+    }
+
+    /* 超小螢幕 */
+    @media (max-width: 480px) {
+      .banner {
+        min-height: 250px;
       }
 
       .order-button {
-        bottom: 20px;
-        right: 20px;
-        padding: 14px 35px;
-        font-size: 16px;
+        padding: 12px 28px;
+        font-size: 14px;
+        bottom: 15px;
+        right: 15px;
+      }
+
+      .about-content {
+        padding: 20px 0;
+      }
+
+      .about {
+        padding: 30px 15px;
+      }
+
+      .products {
+        padding: 30px 15px;
+      }
+
+      .section-title {
+        font-size: 22px;
+      }
+
+      nav a {
+        font-size: 12px;
       }
     }
   </style>
