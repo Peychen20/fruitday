@@ -110,35 +110,24 @@
       padding: 40px 30px;
     }
 
-    .banner h2 {
-      font-size: 36px;
-      margin-bottom: 10px;
+    .order-button {
+      display: inline-block;
+      padding: 18px 50px;
+      background-color: #497552;
+      color: white;
+      text-decoration: none;
+      border: none;
+      border-radius: 100px;
+      font-size: 20px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
 
-    .banner p {.order-button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 22px 50px;
-  background: #497552;
-  color: white;
-  text-decoration: none;
-  border-radius: 100px;
-  font-size: 20px;
-  font-weight: bold;
-  transition: transform 0.3s, box-shadow 0.3s, background 0.3s;
-  cursor: pointer;
-  white-space: nowrap;
-}
-
-.order-button:hover {
-  background: #3d614a;
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.3);
-}
-
-      font-size: 16px;
+    .order-button:hover {
+      background-color: #3d614a;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0,0,0,0.3);
     }
 
     /* 關於我們 */
@@ -357,12 +346,12 @@
     </nav>
   </header>
 
- <!-- Banner -->
-<section class="banner">
-  <div class="banner-content">
-    <a href="#contact" class="order-button">前往選購 <span style="font-size: 24px;">»</span></a>
-  </div>
-</section>
+  <!-- Banner -->
+  <section class="banner">
+    <div class="banner-content">
+      <button class="order-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">前往選購 »</button>
+    </div>
+  </section>
 
   <!-- 關於我們 -->
   <section class="about" id="about">
