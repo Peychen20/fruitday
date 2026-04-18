@@ -627,40 +627,52 @@
       <div class="form-content">
         <form id="orderForm" style="max-width: 500px; margin: 0 auto;">
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">姓名 *</label>
-            <input type="text" name="name" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">自用或送禮 *</label>
+            <select name="purpose" id="purposeSelect" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+              <option value="">-- 請選擇 --</option>
+              <option value="自用">自用</option>
+              <option value="送禮">送禮</option>
+            </select>
+          </div>
+
+          <div id="senderInfo" style="display: none; margin-bottom: 20px; padding: 15px; background: #f0f7f2; border: 1px solid #c3ddc8; border-radius: 6px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">寄件人姓名與聯絡手機 *</label>
+            <input type="text" name="sender" id="senderInput" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="例：陳大明 0912345678">
           </div>
 
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">電話 *</label>
-            <input type="tel" name="phone" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">收件人姓名 *</label>
+            <input type="text" name="receiverName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
           </div>
 
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">電郵 *</label>
-            <input type="email" name="email" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">收件人手機 *</label>
+            <input type="tel" name="receiverPhone" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
           </div>
 
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">地址 *</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">訂購人地址 *</label>
             <input type="text" name="address" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
           </div>
 
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">選擇水果 *</label>
-            <select name="fruit" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
-              <option value="老欉玉荷包">老欉玉荷包</option>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">電子郵件 E-mail</label>
+            <input type="email" name="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+          </div>
+
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">方便收貨時間 *</label>
+            <select name="deliveryTime" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+              <option value="">-- 請選擇 --</option>
+              <option value="平日">平日</option>
+              <option value="假日">假日</option>
+              <option value="平假日皆可">平假日皆可</option>
             </select>
           </div>
 
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">數量 (盒) *</label>
-            <input type="number" name="quantity" min="1" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
-          </div>
-
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">備註</label>
-            <textarea name="note" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px; min-height: 100px; resize: vertical;"></textarea>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">匯款帳號後五碼（對帳用）*</label>
+            <input type="text" name="bankCode" required maxlength="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="請輸入5碼">
           </div>
 
           <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #497552 0%, #497552 100%); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.3s;">
@@ -680,17 +692,32 @@
   </section>
 
   <script>
+    // 送禮時顯示寄件人欄位
+    document.getElementById('purposeSelect').addEventListener('change', function() {
+      const senderInfo = document.getElementById('senderInfo');
+      const senderInput = document.getElementById('senderInput');
+      if (this.value === '送禮') {
+        senderInfo.style.display = 'block';
+        senderInput.required = true;
+      } else {
+        senderInfo.style.display = 'none';
+        senderInput.required = false;
+        senderInput.value = '';
+      }
+    });
+
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
       const formData = {
-        name: document.querySelector('input[name="name"]').value,
-        phone: document.querySelector('input[name="phone"]').value,
-        email: document.querySelector('input[name="email"]').value,
+        purpose: document.querySelector('select[name="purpose"]').value,
+        sender: document.querySelector('input[name="sender"]').value,
+        receiverName: document.querySelector('input[name="receiverName"]').value,
+        receiverPhone: document.querySelector('input[name="receiverPhone"]').value,
         address: document.querySelector('input[name="address"]').value,
-        fruit: document.querySelector('select[name="fruit"]').value,
-        quantity: document.querySelector('input[name="quantity"]').value,
-        note: document.querySelector('textarea[name="note"]').value
+        email: document.querySelector('input[name="email"]').value,
+        deliveryTime: document.querySelector('select[name="deliveryTime"]').value,
+        bankCode: document.querySelector('input[name="bankCode"]').value
       };
 
       const scriptUrl = 'https://script.google.com/macros/s/AKfycby925GbRMm4I92s8T1DRrCcBppSeNXSPVMaUhoXC3Lq2OW0AFrfNkwP8kK0qDrS29tb/exec';
