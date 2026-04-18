@@ -1,5 +1,3 @@
-這是最新的指令，麻煩更新
-
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
@@ -263,7 +261,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 60px;
+      font-size: 80px;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .product-info {
@@ -471,7 +476,7 @@
 
       .product-image {
         height: 150px;
-        font-size: 45px;
+        font-size: 60px;
       }
 
       .form-section {
@@ -581,32 +586,33 @@
     <h2 class="section-title">我們的產品</h2>
     <div class="product-grid">
       <div class="product-card">
-        <div class="product-image">🍎</div>
+        <div class="product-image"><img src="LYCHEE.JPG" alt="老欉玉荷包"></div>
         <div class="product-info">
           <h3>老欉玉荷包</h3>
           <p>經典風味無可取代，果肉細緻飽滿多汁，蜜香濃郁甜而不膩，每口都是盛夏享受。</p>
         </div>
-           </div>
+      </div>
       <div class="product-card">
-        <div class="product-image">🍉</div>
+        <div class="product-image"><img src="SHAKYA.jpg" alt="大目釋迦"></div>
         <div class="product-info">
           <h3>大目釋迦</h3>
           <p>果肉綿密口感細滑，甜度濃郁入口即化，清甜果香自然純粹，令人一吃就上癮。</p>
         </div>
       </div>
       <div class="product-card">
-        <div class="product-image">🥝</div>
+        <div class="product-image"><img src="MANGO.JPG" alt="夏雪芒果"></div>
         <div class="product-info">
           <h3>夏雪芒果</h3>
           <p>芒果界LV-融合土芒果、愛文、金煌多種芒果優點，甜度高香氣濃，層次豐富不膩口。</p>
         </div>
-    </div>
+      </div>
       <div class="product-card">
-        <div class="product-image">🥝</div>
+        <div class="product-image"><img src="MANGO1.JPG" alt="愛文芒果"></div>
         <div class="product-info">
           <h3>愛文芒果</h3>
           <p>果肉柔嫩多汁香氣濃郁，甜度飽滿經典風味，夏日必吃首選。</p>
         </div>
+      </div>
     </div>
   </section>
 
@@ -643,13 +649,11 @@
             <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">選擇水果 *</label>
             <select name="fruit" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
               <option value="">-- 請選擇 --</option>
-              <option value="蘋果">🍎 蘋果</option>
-              <option value="柳橙">🍊 柳橙</option>
-              <option value="香蕉">🍌 香蕉</option>
-              <option value="草莓">🍓 草莓</option>
-              <option value="西瓜">🍉 西瓜</option>
-              <option value="奇異果">🥝 奇異果</option>
-              <option value="混合">🎁 混合水果禮盒</option>
+              <option value="老欉玉荷包">老欉玉荷包</option>
+              <option value="大目釋迦">大目釋迦</option>
+              <option value="夏雪芒果">夏雪芒果</option>
+              <option value="愛文芒果">愛文芒果</option>
+              <option value="混合">混合水果禮盒</option>
             </select>
           </div>
 
