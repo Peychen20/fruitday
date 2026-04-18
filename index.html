@@ -262,6 +262,13 @@
       align-items: center;
       justify-content: center;
       font-size: 60px;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .product-info {
@@ -542,7 +549,7 @@
   <!-- 導航菜單 -->
   <header>
     <nav>
-      <div class="logo"><img src="logo.png" alt="FruitDay"></div>
+      <div class="logo"><img src="logo.png" alt="陳家嚴選"></div>
       <ul>
         <li><a href="#about">關於我們</a></li>
         <li><a href="#products">產品介紹</a></li>
@@ -562,7 +569,7 @@
       <div>
         <h2>關於 陳家嚴選-鮮果好日</h2>
         <p>我們致力於為您提供最新鮮、最優質的水果。每一個產品都經過嚴格的篩選和品質檢驗。</p>
-        <p>FruitDay 相信「新鮮就是最好的味道」，我們從果園直送到您的餐桌。</p>
+        <p>陳家嚴選 相信「新鮮就是最好的味道」，我們從果園直送到您的餐桌。</p>
         <ul class="features">
           <li>嚴選優質果園直供</li>
           <li>每日採摘新鮮配送</li>
@@ -578,33 +585,49 @@
   <section class="products" id="products">
     <h2 class="section-title">我們的產品</h2>
     <div class="product-grid">
+      <!-- 老欉玉荷包 -->
       <div class="product-card">
-        <div class="product-image">🍎</div>
+        <div class="product-image">
+          <img src="lychee.jpg" alt="老欉玉荷包">
+        </div>
         <div class="product-info">
           <h3>老欉玉荷包</h3>
-          <p>經典風味無可取代，果肉細緻飽滿多汁，蜜香濃郁甜而不膩，每口都是盛夏享受。</p>
-        </div>
-           </div>
-      <div class="product-card">
-        <div class="product-image">🍉</div>
-        <div class="product-info">
-          <h3>大目釋迦</h3>
-          <p>果肉綿密口感細滑，甜度濃郁入口即化，清甜果香自然純粹，令人一吃就上癮。</p>
+          <p>台灣經典荔枝，果肉飽滿多汁，甜蜜滋味令人難忘</p>
         </div>
       </div>
+
+      <!-- 大目釋迦 -->
       <div class="product-card">
-        <div class="product-image">🥝</div>
+        <div class="product-image">
+          <img src="shakya.jpg" alt="大目釋迦">
+        </div>
+        <div class="product-info">
+          <h3>大目釋迦</h3>
+          <p>獨特奶油質地，營養豐富，大快朵頤的必選佳果</p>
+        </div>
+      </div>
+
+      <!-- 夏雪芒果 -->
+      <div class="product-card">
+        <div class="product-image">
+          <img src="mango1.jpg" alt="夏雪芒果">
+        </div>
         <div class="product-info">
           <h3>夏雪芒果</h3>
-          <p>芒果界LV-融合土芒果、愛文、金煌多種芒果優點，甜度高香氣濃，層次豐富不膩口。</p>
+          <p>芒果界LV-融合土芒果、愛文、金煌多種芒果優點，甜度高香氣濃，層次豐富不膩口</p>
         </div>
-    </div>
+      </div>
+
+      <!-- 愛文芒果 -->
       <div class="product-card">
-        <div class="product-image">🥝</div>
+        <div class="product-image">
+          <img src="mango2.jpg" alt="愛文芒果">
+        </div>
         <div class="product-info">
           <h3>愛文芒果</h3>
-          <p>果肉柔嫩多汁香氣濃郁，甜度飽滿經典風味，夏日必吃首選。</p>
+          <p>果肉柔嫩多汁香氣濃郁，甜度飽滿經典風味，夏日必吃首選</p>
         </div>
+      </div>
     </div>
   </section>
 
@@ -641,13 +664,11 @@
             <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">選擇水果 *</label>
             <select name="fruit" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
               <option value="">-- 請選擇 --</option>
-              <option value="蘋果">🍎 蘋果</option>
-              <option value="柳橙">🍊 柳橙</option>
-              <option value="香蕉">🍌 香蕉</option>
-              <option value="草莓">🍓 草莓</option>
-              <option value="西瓜">🍉 西瓜</option>
-              <option value="奇異果">🥝 奇異果</option>
-              <option value="混合">🎁 混合水果禮盒</option>
+              <option value="老欉玉荷包">老欉玉荷包</option>
+              <option value="大目釋迦">大目釋迦</option>
+              <option value="夏雪芒果">夏雪芒果</option>
+              <option value="愛文芒果">愛文芒果</option>
+              <option value="混合">混合水果禮盒</option>
             </select>
           </div>
 
@@ -716,9 +737,9 @@
   <footer>
     <div class="footer-content">
       <div class="footer-section">
-        <h3>🍎 FruitDay</h3>
+        <h3>🍎 陳家嚴選</h3>
+        <p>鮮果好日</p>
         <p>新鮮水果直送到家</p>
-        <p>讓您享受最天然的滋味</p>
       </div>
       <div class="footer-section">
         <h3>聯絡方式</h3>
@@ -734,7 +755,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 FruitDay. All rights reserved.</p>
+      <p>&copy; 2026 陳家嚴選-鮮果好日。版權所有。</p>
     </div>
   </footer>
 </body>
