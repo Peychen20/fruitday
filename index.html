@@ -777,28 +777,17 @@
 
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbyQzfNosSYxeFWhaU5ACT8MchwJIeSGHZNIHA0ITbS833CQBzGkguswstQMQIT2PqNAgg/exec';
 
-      fetch(scriptUrl, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-      .then(() => {
-        document.getElementById('orderForm').reset();
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        setTimeout(() => {
-          document.getElementById('successMessage').style.display = 'none';
-        }, 5000);
-      })
-      .catch(() => {
-        // CORS 錯誤時資料仍會送出，顯示成功
-        document.getElementById('orderForm').reset();
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        setTimeout(() => {
-          document.getElementById('successMessage').style.display = 'none';
-        }, 5000);
-      });
+      const xhr = new XMLHttpRequest();
+      xhr.open('POST', scriptUrl, true);
+      xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
+      xhr.send(JSON.stringify(formData));
+
+      document.getElementById('orderForm').reset();
+      document.getElementById('successMessage').style.display = 'block';
+      document.getElementById('errorMessage').style.display = 'none';
+      setTimeout(() => {
+        document.getElementById('successMessage').style.display = 'none';
+      }, 5000);
     });
   </script>
 
