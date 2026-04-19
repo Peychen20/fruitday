@@ -795,14 +795,9 @@
       const script = document.createElement('script');
 
       window[callbackName] = function(response) {
-        document.getElementById('orderForm').reset();
-        document.getElementById('successMessage').style.display = 'block';
-        document.getElementById('errorMessage').style.display = 'none';
-        setTimeout(() => {
-          document.getElementById('successMessage').style.display = 'none';
-        }, 5000);
         delete window[callbackName];
         document.body.removeChild(script);
+        window.location.href = 'thankyou.html';
       };
 
       script.onerror = function() {
