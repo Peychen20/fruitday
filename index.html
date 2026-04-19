@@ -777,17 +777,33 @@
 
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbyQzfNosSYxeFWhaU5ACT8MchwJIeSGHZNIHA0ITbS833CQBzGkguswstQMQIT2PqNAgg/exec';
 
-      const xhr = new XMLHttpRequest();
-      xhr.open('POST', scriptUrl, true);
-      xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
-      xhr.send(JSON.stringify(formData));
+      const callbackName = 'cb_' + Date.now();
+      const script = document.createElement('script');
 
-      document.getElementById('orderForm').reset();
-      document.getElementById('successMessage').style.display = 'block';
-      document.getElementById('errorMessage').style.display = 'none';
-      setTimeout(() => {
-        document.getElementById('successMessage').style.display = 'none';
-      }, 5000);
+      window[callbackName] = function(response) {
+        document.getElementById('orderForm').reset();
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        setTimeout(() => {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
+        delete window[callbackName];
+        document.body.removeChild(script);
+      };
+
+      script.onerror = function() {
+        document.getElementById('errorMessage').style.display = 'block';
+        delete window[callbackName];
+        document.body.removeChild(script);
+      };
+
+      const params = new URLSearchParams({
+        callback: callbackName,
+        data: JSON.stringify(formData)
+      });
+
+      script.src = scriptUrl + '?' + params.toString();
+      document.body.appendChild(script);
     });
   </script>
 
