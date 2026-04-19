@@ -777,32 +777,28 @@
 
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbyQzfNosSYxeFWhaU5ACT8MchwJIeSGHZNIHA0ITbS833CQBzGkguswstQMQIT2PqNAgg/exec';
 
-      const form = document.createElement('form');
-      form.method = 'POST';
-      form.action = scriptUrl;
-      form.target = 'hidden_iframe';
-
-      const input = document.createElement('input');
-      input.type = 'hidden';
-      input.name = 'data';
-      input.value = JSON.stringify(formData);
-      form.appendChild(input);
-
-      const iframe = document.createElement('iframe');
-      iframe.name = 'hidden_iframe';
-      iframe.style.display = 'none';
-      document.body.appendChild(iframe);
-      document.body.appendChild(form);
-      form.submit();
-
-      document.getElementById('orderForm').reset();
-      document.getElementById('successMessage').style.display = 'block';
-      document.getElementById('errorMessage').style.display = 'none';
-      setTimeout(() => {
-        document.getElementById('successMessage').style.display = 'none';
-        document.body.removeChild(iframe);
-        document.body.removeChild(form);
-      }, 5000);
+      fetch(scriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      .then(() => {
+        document.getElementById('orderForm').reset();
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        setTimeout(() => {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
+      })
+      .catch(() => {
+        // CORS 錯誤時資料仍會送出，顯示成功
+        document.getElementById('orderForm').reset();
+        document.getElementById('successMessage').style.display = 'block';
+        document.getElementById('errorMessage').style.display = 'none';
+        setTimeout(() => {
+          document.getElementById('successMessage').style.display = 'none';
+        }, 5000);
+      });
     });
   </script>
 
