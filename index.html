@@ -256,7 +256,7 @@
 
     .product-image {
       width: 100%;
-      height: 160px;
+      height: 320px;
       background: linear-gradient(135deg, #497552 0%, #497552 100%);
       display: flex;
       align-items: center;
@@ -476,7 +476,7 @@
       }
 
       .product-image {
-        height: 120px;
+        height: 240px;
         font-size: 60px;
       }
 
@@ -584,13 +584,13 @@
 
   <!-- 產品展示 -->
   <section class="products" id="products">
-    <h2 class="section-title">我們的產品</h2>
+    <h2 class="section-title">產品介紹</h2>
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image"><img src="LYCHEE.JPG" alt="老欉玉荷包" style="object-position: center 50%;"></div>
         <div class="product-info">
           <h3>老欉玉荷包</h3>
-          <p>經典風味無可取代，果肉細緻飽滿多汁，蜜香濃郁甜而不膩，每口都是盛夏享受。</p>
+          <p>經典風味無可取代，果肉細緻飽滿多汁，蜜香濃郁甜而不膩，每口都是盛夏享受。<a href="lychee.html" style="color: #497552; font-weight: bold; margin-left: 6px;">更多 ›</a></p>
         </div>
       </div>
       <div class="product-card">
@@ -607,13 +607,6 @@
           <p>芒果界LV-融合土芒果、愛文、金煌多種芒果優點，甜度高香氣濃，層次豐富不膩口。</p>
         </div>
       </div>
-      <div class="product-card">
-        <div class="product-image" style="height: 80px;"><img src="MANGO1.JPG" alt="愛文芒果"></div>
-        <div class="product-info">
-          <h3>愛文芒果 已完售</h3>
-          <p>果肉柔嫩多汁香氣濃郁，甜度飽滿經典風味，夏日必吃首選。</p>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -625,21 +618,24 @@
         <p>訂購流程：<br>填寫預購單 ＞ 匯款完成 ＞ LINE主動對帳</p>
       </div>
       <div class="form-content">
+
+        <!-- 注意事項（全寬） -->
+        <div style="margin-bottom: 24px; padding: 18px 20px; background: #fff8e1; border: 2px solid #f0a500; border-radius: 8px; font-size: 14px; color: #5a3e00; line-height: 1.8;">
+          <div style="font-weight: bold; font-size: 16px; margin-bottom: 10px; color: #c0392b;">⚠️ 注意！！下單前請務必留意：</div>
+          <ol style="padding-left: 18px; margin: 0;">
+            <li>目前為預購階段，下單匯款後請務必加 LINE（賴）對帳，對帳完成即可排單。</li>
+            <li>今年採收期預計為 5/24～6/5 左右（以果實最美味階段進行採收），請勿催單。</li>
+            <li>採收期若有提早或延後，都會在 LINE（賴）上通知您。</li>
+          </ol>
+          <div style="margin-top: 10px; font-weight: bold;">感謝您的訂購與支持 🙏</div>
+        </div>
+
+        <!-- 促銷圖（全寬） -->
+        <div style="margin-bottom: 28px;">
+          <img src="promo-banner.jpg" alt="大樹玉荷包促銷" style="width: 100%; border-radius: 8px;">
+        </div>
+
         <form id="orderForm" style="max-width: 500px; margin: 0 auto;">
-          <div style="margin-bottom: 24px; padding: 18px 20px; background: #fff8e1; border: 2px solid #f0a500; border-radius: 8px; font-size: 14px; color: #5a3e00; line-height: 1.8;">
-            <div style="font-weight: bold; font-size: 16px; margin-bottom: 10px; color: #c0392b;">⚠️ 注意！！下單前請務必留意：</div>
-            <ol style="padding-left: 18px; margin: 0;">
-              <li>目前為預購階段，下單匯款後請務必加 LINE（賴）對帳，對帳完成即可排單。</li>
-              <li>今年採收期預計為 5/24～6/5 左右（以果實最美味階段進行採收），請勿催單。</li>
-              <li>採收期若有提早或延後，都會在 LINE（賴）上通知您。</li>
-            </ol>
-            <div style="margin-top: 10px; font-weight: bold;">感謝您的訂購與支持 🙏</div>
-          </div>
-
-          <div style="margin-bottom: 24px;">
-            <img src="promo-banner.jpg" alt="大樹玉荷包促銷" style="width: 100%; border-radius: 8px;">
-          </div>
-
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">訂購數量 *</label>
             <select name="quantity" id="quantitySelect" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
