@@ -641,6 +641,27 @@
           </div>
 
           <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">訂購數量 *</label>
+            <select name="quantity" id="quantitySelect" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
+              <option value="">-- 請選擇 --</option>
+              <option value="1盒(須加運費160元)，共1,110元">1 盒（須加運費：160元），共 1,110 元</option>
+              <option value="2盒(免運)，共1,900元">2 盒（免運），共 1,900 元</option>
+              <option value="3盒(免運)，共2,850元">3 盒（免運），共 2,850 元</option>
+              <option value="4盒(免運)，共3,800元">4 盒（免運），共 3,800 元</option>
+              <option value="5盒(免運)，共4,750元">5 盒（免運），共 4,750 元</option>
+              <option value="6盒(免運再打9折)，共5,130元">6 盒（免運再打9折），共 5,130 元</option>
+              <option value="12盒(免運再打9折)，共10,260元">12 盒（免運再打9折），共 10,260 元</option>
+              <option value="18盒(免運再打9折)，共15,390元">18 盒（免運再打9折），共 15,390 元</option>
+              <option value="其他">其他（請於下方說明）</option>
+            </select>
+          </div>
+
+          <div id="quantityOther" style="display: none; margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">其他數量說明 *</label>
+            <input type="text" name="quantityOtherText" id="quantityOtherInput" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="請說明您的訂購需求">
+          </div>
+
+          <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">自用或送禮 *</label>
             <select name="purpose" id="purposeSelect" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
               <option value="">-- 請選擇 --</option>
@@ -665,12 +686,12 @@
           </div>
 
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">訂購人地址 *</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">收件人地址 *</label>
             <input type="text" name="address" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
           </div>
 
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">電子郵件 E-mail</label>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">電子郵件 E-mail <span style="font-weight: normal; color: #888; font-size: 13px;">（每年開賣會通知，非必填）</span></label>
             <input type="email" name="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
           </div>
 
@@ -687,6 +708,10 @@
           <div style="margin-bottom: 20px;">
             <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">匯款帳號後五碼（對帳用）*</label>
             <input type="text" name="bankCode" required maxlength="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="請輸入5碼">
+          </div>
+
+          <div style="margin-bottom: 24px;">
+            <img src="bank-info.jpg" alt="匯款帳號資訊" style="width: 100%; border-radius: 8px;">
           </div>
 
           <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #497552 0%, #497552 100%); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.3s;">
@@ -706,6 +731,20 @@
   </section>
 
   <script>
+    // 其他數量時顯示說明欄位
+    document.getElementById('quantitySelect').addEventListener('change', function() {
+      const otherDiv = document.getElementById('quantityOther');
+      const otherInput = document.getElementById('quantityOtherInput');
+      if (this.value === '其他') {
+        otherDiv.style.display = 'block';
+        otherInput.required = true;
+      } else {
+        otherDiv.style.display = 'none';
+        otherInput.required = false;
+        otherInput.value = '';
+      }
+    });
+
     // 送禮時顯示寄件人欄位
     document.getElementById('purposeSelect').addEventListener('change', function() {
       const senderInfo = document.getElementById('senderInfo');
@@ -723,7 +762,9 @@
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
+      const qtyVal = document.querySelector('select[name="quantity"]').value;
       const formData = {
+        quantity: qtyVal === '其他' ? '其他：' + document.querySelector('input[name="quantityOtherText"]').value : qtyVal,
         purpose: document.querySelector('select[name="purpose"]').value,
         sender: document.querySelector('input[name="sender"]').value,
         receiverName: document.querySelector('input[name="receiverName"]').value,
