@@ -841,22 +841,11 @@
 
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbyQzfNosSYxeFWhaU5ACT8MchwJIeSGHZNIHA0ITbS833CQBzGkguswstQMQIT2PqNAgg/exec';
 
-      const callbackName = 'cb_' + Date.now();
-      const script = document.createElement('script');
+      // keepalive 確保跳頁後請求仍會送達
+      const params = new URLSearchParams({ data: JSON.stringify(formData) });
+      fetch(scriptUrl + '?' + params.toString(), { keepalive: true }).catch(function() {});
 
-      // 背景清理用（不阻擋跳轉）
-      window[callbackName] = function() { delete window[callbackName]; };
-      script.onerror = function() { delete window[callbackName]; };
-
-      const params = new URLSearchParams({
-        callback: callbackName,
-        data: JSON.stringify(formData)
-      });
-
-      script.src = scriptUrl + '?' + params.toString();
-      document.body.appendChild(script);
-
-      // 立即跳轉，資料繼續在背景送出
+      // 立即跳轉
       window.location.href = 'thankyou.html';
     });
   </script>
