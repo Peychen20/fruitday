@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>陳家嚴選鮮果好日FruitDay - 高雄大樹嚴選老欉玉荷包</title>
-  <script src="https://static.line-svcapis.com/liff/pkg/@line/liff/dist/liff.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -665,15 +664,6 @@
       </div>
       <div class="form-content">
 
-        <!-- LINE 登入狀態 -->
-        <div id="lineStatusBar" style="width: 70%; margin: 0 auto 20px auto; padding: 12px 16px; border-radius: 8px; font-size: 14px; font-weight: bold; text-align: center; background: #f0faf4; border: 1.5px solid #06c755; color: #06c755; display: none;"></div>
-        <div id="lineLoginWrap" style="width: 70%; margin: 0 auto 20px auto; text-align: center; display: none;">
-          <a href="#" onclick="liff.login(); return false;"
-             style="display: inline-flex; align-items: center; gap: 8px; background: #06c755; color: white; padding: 12px 28px; border-radius: 100px; text-decoration: none; font-size: 15px; font-weight: bold; box-shadow: 0 4px 14px rgba(6,199,85,0.35);">
-            <img src="line-icon.png" style="width:24px;height:24px;object-fit:contain;"> 以 LINE 帳號連結訂單
-          </a>
-        </div>
-
         <!-- 注意事項（70%寬桌機／手機100%） -->
         <div class="notice-block" style="margin: 0 auto 24px auto; padding: 18px 20px; background: #fff8e1; border: 2px solid #f0a500; border-radius: 8px; font-size: 14px; color: #5a3e00; line-height: 1.8;">
           <div style="font-weight: bold; font-size: 16px; margin-bottom: 10px; color: #c0392b;">⚠️ 注意！！下單前請務必留意：</div>
@@ -786,34 +776,6 @@
   </section>
 
   <script>
-    // LIFF 初始化（只在 LINE 內建瀏覽器執行）
-    let lineUserId = '';
-    let lineDisplayName = '';
-
-    (async function() {
-      try {
-        if (typeof liff === 'undefined') return;
-        // 只有在 LINE App 內才執行
-        const isLineApp = /Line\//i.test(navigator.userAgent);
-        if (!isLineApp) return;
-
-        await liff.init({ liffId: '2009835477-wHemjbZD' });
-
-        if (!liff.isInClient()) return;
-
-        const profile = await liff.getProfile();
-        lineUserId = profile.userId;
-        lineDisplayName = profile.displayName;
-        const bar = document.getElementById('lineStatusBar');
-        if (bar) {
-          bar.textContent = '✅ LINE 已連結：' + lineDisplayName;
-          bar.style.display = 'block';
-        }
-      } catch(err) {
-        console.log('LIFF:', err);
-      }
-    })();
-
     // 其他數量時顯示說明欄位
     document.getElementById('quantitySelect').addEventListener('change', function() {
       const otherDiv = document.getElementById('quantityOther');
@@ -874,9 +836,7 @@
         address: document.querySelector('input[name="address"]').value,
         email: document.querySelector('input[name="email"]').value,
         deliveryTime: document.querySelector('select[name="deliveryTime"]').value,
-        bankCode: document.querySelector('input[name="bankCode"]').value,
-        lineUserId: lineUserId,
-        lineDisplayName: lineDisplayName
+        bankCode: document.querySelector('input[name="bankCode"]').value
       };
 
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbyQzfNosSYxeFWhaU5ACT8MchwJIeSGHZNIHA0ITbS833CQBzGkguswstQMQIT2PqNAgg/exec';
