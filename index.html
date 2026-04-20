@@ -755,6 +755,10 @@
             <img src="bank-info.jpg" alt="匯款帳號資訊" style="width: 100%; border-radius: 8px;">
           </div>
 
+          <div id="validationMessage" style="display: none; margin-bottom: 16px; padding: 14px 16px; background: #fdecea; border: 2px solid #e74c3c; border-radius: 8px; color: #c0392b; font-size: 15px; font-weight: bold; text-align: center;">
+            ⚠️ 您有必填欄位未填，再請填妥後送出
+          </div>
+
           <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #497552 0%, #497552 100%); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.3s;">
             送出訂單
           </button>
@@ -802,6 +806,25 @@
 
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
+
+      // 必填驗證
+      const requiredFields = this.querySelectorAll('[required]');
+      let allFilled = true;
+      requiredFields.forEach(function(field) {
+        if (!field.value.trim()) {
+          allFilled = false;
+          field.style.border = '2px solid #e74c3c';
+        } else {
+          field.style.border = '1px solid #ddd';
+        }
+      });
+      if (!allFilled) {
+        const msg = document.getElementById('validationMessage');
+        msg.style.display = 'block';
+        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      document.getElementById('validationMessage').style.display = 'none';
 
       const qtyVal = document.querySelector('select[name="quantity"]').value;
       const formData = {
