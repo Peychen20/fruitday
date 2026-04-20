@@ -822,20 +822,24 @@
     });
   </script>
 
-  <!-- 浮動 LINE 按鈕 -->
-  <a href="https://lin.ee/OdJucNf" target="_blank" rel="noopener" title="加入LINE官方帳號"
-     style="position: fixed; right: 20px; bottom: 30px; z-index: 999;
-            width: 58px; height: 58px; border-radius: 50%;
+  <!-- 浮動 LINE 客服按鈕 -->
+  <a href="https://lin.ee/OdJucNf" target="_blank" rel="noopener"
+     style="position: fixed; right: 20px; bottom: 24px; z-index: 999;
+            display: flex; align-items: center; gap: 0;
             background: #06c755;
-            box-shadow: 0 4px 16px rgba(6,199,85,0.5), 0 2px 6px rgba(0,0,0,0.2);
-            display: flex; align-items: center; justify-content: center;
-            transition: transform 0.2s, box-shadow 0.2s;
-            text-decoration: none;"
-     onmouseover="this.style.transform='scale(1.12)';this.style.boxShadow='0 6px 22px rgba(6,199,85,0.6), 0 3px 8px rgba(0,0,0,0.25)';"
-     onmouseout="this.style.transform='scale(1)';this.style.boxShadow='0 4px 16px rgba(6,199,85,0.5), 0 2px 6px rgba(0,0,0,0.2)';">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="34" height="34" fill="white">
-      <path d="M12 2C6.48 2 2 5.92 2 10.7c0 2.93 1.7 5.52 4.32 7.2-.18.65-.67 2.36-.77 2.72-.12.44.16.44.34.32.14-.09 2.19-1.48 3.08-2.09.64.09 1.3.14 1.97.14 5.52 0 10-3.92 10-8.7C22 5.92 17.52 2 12 2z"/>
-    </svg>
+            border-radius: 100px;
+            box-shadow: 0 4px 18px rgba(6,199,85,0.45), 0 2px 8px rgba(0,0,0,0.2);
+            text-decoration: none;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;"
+     onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 6px 24px rgba(6,199,85,0.55), 0 3px 10px rgba(0,0,0,0.25)';"
+     onmouseout="this.style.transform='translateY(0)';this.style.boxShadow='0 4px 18px rgba(6,199,85,0.45), 0 2px 8px rgba(0,0,0,0.2)';">
+    <span style="color: white; font-size: 15px; font-weight: bold; padding: 13px 16px 13px 20px; letter-spacing: 1px;">線上客服</span>
+    <span style="background: rgba(0,0,0,0.15); height: 100%; display: flex; align-items: center; padding: 10px 12px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="white">
+        <path d="M12 2C6.48 2 2 5.92 2 10.7c0 2.93 1.7 5.52 4.32 7.2-.18.65-.67 2.36-.77 2.72-.12.44.16.44.34.32.14-.09 2.19-1.48 3.08-2.09.64.09 1.3.14 1.97.14 5.52 0 10-3.92 10-8.7C22 5.92 17.52 2 12 2z"/>
+      </svg>
+    </span>
   </a>
 
   <!-- 頁腳 -->
