@@ -786,28 +786,27 @@
   </section>
 
   <script>
-    // LIFF 初始化
+    // LIFF 初始化（完全隔離，不影響表單）
     let lineUserId = '';
     let lineDisplayName = '';
 
-    liff.init({ liffId: '2009835477-wHemjbZD' })
-      .then(() => {
+    (async function() {
+      try {
+        await liff.init({ liffId: '2009835477-wHemjbZD' });
         if (liff.isLoggedIn()) {
-          liff.getProfile().then(profile => {
-            lineUserId = profile.userId;
-            lineDisplayName = profile.displayName;
-            const bar = document.getElementById('lineStatusBar');
-            bar.textContent = '✅ LINE 已連結：' + lineDisplayName;
-            bar.style.display = 'block';
-          });
+          const profile = await liff.getProfile();
+          lineUserId = profile.userId;
+          lineDisplayName = profile.displayName;
+          const bar = document.getElementById('lineStatusBar');
+          if (bar) { bar.textContent = '✅ LINE 已連結：' + lineDisplayName; bar.style.display = 'block'; }
         } else {
-          document.getElementById('lineLoginWrap').style.display = 'block';
+          const wrap = document.getElementById('lineLoginWrap');
+          if (wrap) wrap.style.display = 'block';
         }
-      })
-      .catch(err => {
-        // 非 LINE 環境（一般瀏覽器），靜默略過
-        console.log('LIFF not in LINE browser:', err);
-      });
+      } catch(err) {
+        console.log('LIFF:', err);
+      }
+    })();
 
     // 其他數量時顯示說明欄位
     document.getElementById('quantitySelect').addEventListener('change', function() {
