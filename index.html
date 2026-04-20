@@ -786,22 +786,28 @@
   </section>
 
   <script>
-    // LIFF 初始化（完全隔離，不影響表單）
+    // LIFF 初始化（只在 LINE 內建瀏覽器執行）
     let lineUserId = '';
     let lineDisplayName = '';
 
     (async function() {
       try {
+        if (typeof liff === 'undefined') return;
+        // 只有在 LINE App 內才執行
+        const isLineApp = /Line\//i.test(navigator.userAgent);
+        if (!isLineApp) return;
+
         await liff.init({ liffId: '2009835477-wHemjbZD' });
-        if (liff.isLoggedIn()) {
-          const profile = await liff.getProfile();
-          lineUserId = profile.userId;
-          lineDisplayName = profile.displayName;
-          const bar = document.getElementById('lineStatusBar');
-          if (bar) { bar.textContent = '✅ LINE 已連結：' + lineDisplayName; bar.style.display = 'block'; }
-        } else {
-          const wrap = document.getElementById('lineLoginWrap');
-          if (wrap) wrap.style.display = 'block';
+
+        if (!liff.isInClient()) return;
+
+        const profile = await liff.getProfile();
+        lineUserId = profile.userId;
+        lineDisplayName = profile.displayName;
+        const bar = document.getElementById('lineStatusBar');
+        if (bar) {
+          bar.textContent = '✅ LINE 已連結：' + lineDisplayName;
+          bar.style.display = 'block';
         }
       } catch(err) {
         console.log('LIFF:', err);
