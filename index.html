@@ -556,6 +556,15 @@
         font-size: 14px;
       }
     }
+    /* 呼吸 Pulse 動畫 */
+    @keyframes pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(73,117,82,0.7); transform: scale(1); }
+      50%  { box-shadow: 0 0 0 10px rgba(73,117,82,0); transform: scale(1.04); }
+      100% { box-shadow: 0 0 0 0 rgba(73,117,82,0); transform: scale(1); }
+    }
+    .pulse-btn {
+      animation: pulse 2s ease-in-out infinite;
+    }
   </style>
 </head>
 <body>
@@ -572,14 +581,14 @@
       <ul>
         <li><a href="#about">關於我們</a></li>
         <li><a href="#products">產品介紹</a></li>
-        <li><a href="#contact">預購玉荷包</a></li>
+        <li><a href="#contact" class="pulse-btn" style="background: #497552; color: white; padding: 10px 20px; border-radius: 100px;">預購玉荷包</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Banner -->
   <section class="banner">
-    <button class="order-button" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">前往預購玉荷包</button>
+    <button class="order-button pulse-btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">前往預購玉荷包</button>
   </section>
 
   <!-- 關於我們 -->
