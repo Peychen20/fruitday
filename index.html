@@ -613,7 +613,7 @@
         <p style="color: #666; font-size: 14px;">不需要過多包裝，<br>只要一口，就能感受到來自土地的真誠。</p>
       </div>
       <div style="text-align: center;">
-        <img src="about-photo.png" alt="陳家嚴選採收現場" style="width: 100%; max-width: 420px; border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,0.15); object-fit: cover;">
+        <img src="about-photo.png" alt="陳家嚴選採收現場" loading="lazy" style="width: 100%; max-width: 420px; border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,0.15); object-fit: cover;">
       </div>
     </div>
   </section>
@@ -624,8 +624,8 @@
     <div class="product-grid">
       <div class="product-card">
         <div class="product-image" style="position: relative;">
-          <img src="LYCHEE.png" alt="老欉玉荷包" style="object-position: center 50%;">
-          <img src="preorder.png" alt="限時限量開放預購中" style="position: absolute; bottom: 8px; right: 8px; width: 88px; height: 88px; pointer-events: none;">
+          <img src="LYCHEE.png" alt="老欉玉荷包" loading="lazy" style="object-position: center 50%;">
+          <img src="preorder.png" alt="限時限量開放預購中" loading="lazy" style="position: absolute; bottom: 8px; right: 8px; width: 88px; height: 88px; pointer-events: none;">
         </div>
         <div class="product-info">
           <h3>高雄大樹老欉玉荷包</h3>
@@ -634,8 +634,8 @@
       </div>
       <div class="product-card">
         <div class="product-image" style="position: relative;">
-          <img src="SHAKYA.jpg" alt="台東大目釋迦">
-          <img src="soldout.png" alt="已售完" style="position: absolute; bottom: 8px; right: 8px; width: 88px; height: 88px; mix-blend-mode: screen; filter: brightness(0.72); pointer-events: none;">
+          <img src="SHAKYA.jpg" alt="台東大目釋迦" loading="lazy">
+          <img src="soldout.png" alt="已售完" loading="lazy" style="position: absolute; bottom: 8px; right: 8px; width: 88px; height: 88px; mix-blend-mode: screen; filter: brightness(0.72); pointer-events: none;">
         </div>
         <div class="product-info">
           <h3>台東大目釋迦</h3>
@@ -644,8 +644,8 @@
       </div>
       <div class="product-card">
         <div class="product-image" style="position: relative;">
-          <img src="MANGO.JPG" alt="台東夏雪芒果" style="object-position: center 35%;">
-          <img src="soldout.png" alt="已售完" style="position: absolute; bottom: 8px; right: 8px; width: 88px; height: 88px; mix-blend-mode: screen; filter: brightness(0.72); pointer-events: none;">
+          <img src="MANGO.JPG" alt="台東夏雪芒果" loading="lazy" style="object-position: center 35%;">
+          <img src="soldout.png" alt="已售完" loading="lazy" style="position: absolute; bottom: 8px; right: 8px; width: 88px; height: 88px; mix-blend-mode: screen; filter: brightness(0.72); pointer-events: none;">
         </div>
         <div class="product-info">
           <h3>台東夏雪芒果</h3>
@@ -677,7 +677,7 @@
 
         <!-- 促銷圖（70%寬桌機／手機100%） -->
         <div class="promo-block" style="margin: 0 auto 28px auto;">
-          <img src="promo-banner.jpg" alt="大樹玉荷包促銷" style="width: 100%; border-radius: 8px; display: block;">
+          <img src="promo-banner.jpg" alt="大樹玉荷包促銷" loading="lazy" style="width: 100%; border-radius: 8px; display: block;">
         </div>
 
         <form id="orderForm" novalidate style="max-width: 500px; margin: 0 auto;">
@@ -844,17 +844,9 @@
       const callbackName = 'cb_' + Date.now();
       const script = document.createElement('script');
 
-      window[callbackName] = function(response) {
-        delete window[callbackName];
-        document.body.removeChild(script);
-        window.location.href = 'thankyou.html';
-      };
-
-      script.onerror = function() {
-        document.getElementById('errorMessage').style.display = 'block';
-        delete window[callbackName];
-        document.body.removeChild(script);
-      };
+      // 背景清理用（不阻擋跳轉）
+      window[callbackName] = function() { delete window[callbackName]; };
+      script.onerror = function() { delete window[callbackName]; };
 
       const params = new URLSearchParams({
         callback: callbackName,
@@ -863,6 +855,9 @@
 
       script.src = scriptUrl + '?' + params.toString();
       document.body.appendChild(script);
+
+      // 立即跳轉，資料繼續在背景送出
+      window.location.href = 'thankyou.html';
     });
   </script>
 
