@@ -841,12 +841,23 @@
 
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbyQzfNosSYxeFWhaU5ACT8MchwJIeSGHZNIHA0ITbS833CQBzGkguswstQMQIT2PqNAgg/exec';
 
-      // keepalive 確保跳頁後請求仍會送達
-      const params = new URLSearchParams({ data: JSON.stringify(formData) });
-      fetch(scriptUrl + '?' + params.toString(), { keepalive: true }).catch(function() {});
+      const callbackName = 'cb_' + Date.now();
+      const script = document.createElement('script');
+      window[callbackName] = function() { delete window[callbackName]; };
+      script.onerror = function() { delete window[callbackName]; };
 
-      // 立即跳轉
-      window.location.href = 'thankyou.html';
+      const params = new URLSearchParams({
+        callback: callbackName,
+        data: JSON.stringify(formData)
+      });
+
+      script.src = scriptUrl + '?' + params.toString();
+      document.body.appendChild(script);
+
+      // 等 500ms 讓請求送出後再跳轉（比等 GAS 回應快很多）
+      setTimeout(function() {
+        window.location.href = 'thankyou.html';
+      }, 500);
     });
   </script>
 
