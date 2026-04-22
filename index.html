@@ -759,7 +759,7 @@
             ⚠️ 您尚有必填欄位未填，請填妥後再送出訂單
           </div>
 
-          <button type="submit" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #497552 0%, #497552 100%); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.3s;">
+          <button type="submit" id="submitBtn" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #497552 0%, #497552 100%); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.3s;">
             送出訂單
           </button>
 
@@ -826,6 +826,13 @@
       }
       document.getElementById('validationMessage').style.display = 'none';
 
+      // 立即顯示送出中狀態
+      var btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = '送出中...';
+      btn.style.opacity = '0.7';
+      btn.style.cursor = 'not-allowed';
+
       const qtyVal = document.querySelector('select[name="quantity"]').value;
       const formData = {
         quantity: qtyVal === '其他' ? '其他：' + document.querySelector('input[name="quantityOtherText"]').value : qtyVal,
@@ -843,8 +850,27 @@
 
       const callbackName = 'cb_' + Date.now();
       const script = document.createElement('script');
-      window[callbackName] = function() { delete window[callbackName]; };
-      script.onerror = function() { delete window[callbackName]; };
+
+      // GAS 回應後跳轉（確保資料已寫入）
+      window[callbackName] = function() {
+        delete window[callbackName];
+        window.location.href = 'thankyou.html';
+      };
+
+      // 若 GAS 無回應，最多等 8 秒後仍跳轉
+      var fallbackTimer = setTimeout(function() {
+        window.location.href = 'thankyou.html';
+      }, 8000);
+
+      script.onerror = function() {
+        clearTimeout(fallbackTimer);
+        delete window[callbackName];
+        btn.disabled = false;
+        btn.textContent = '送出訂單';
+        btn.style.opacity = '1';
+        btn.style.cursor = 'pointer';
+        document.getElementById('errorMessage').style.display = 'block';
+      };
 
       const params = new URLSearchParams({
         callback: callbackName,
@@ -853,11 +879,6 @@
 
       script.src = scriptUrl + '?' + params.toString();
       document.body.appendChild(script);
-
-      // 等 500ms 讓請求送出後再跳轉（比等 GAS 回應快很多）
-      setTimeout(function() {
-        window.location.href = 'thankyou.html';
-      }, 500);
     });
   </script>
 
