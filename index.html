@@ -655,116 +655,49 @@
     </div>
   </section>
 
-  <!-- 訂購表單 -->
+  <!-- 預約登記表單 -->
   <section class="form-section" id="contact">
     <div class="form-container">
       <div class="form-header">
-        <h2>大樹老欉玉荷包預購</h2>
-        <p>訂購流程：<br>填寫預購單 ＞ 匯款完成 ＞ LINE主動對帳</p>
+        <h2>2027 玉荷包預約登記</h2>
+        <p>留下資料，明年開賣第一時間通知您</p>
       </div>
       <div class="form-content">
 
-        <!-- 注意事項（70%寬桌機／手機100%） -->
-        <div class="notice-block" style="margin: 0 auto 24px auto; padding: 18px 20px; background: #fff8e1; border: 2px solid #f0a500; border-radius: 8px; font-size: 14px; color: #5a3e00; line-height: 1.8;">
-          <div style="font-weight: bold; font-size: 16px; margin-bottom: 10px; color: #c0392b;">⚠️ 注意！！下單前請務必留意：</div>
-          <ol style="padding-left: 18px; margin: 0;">
-            <li>目前為預購階段，下單匯款後請務必加 LINE（賴）對帳，對帳完成即可排單。</li>
-            <li>今年採收期預計為 5/24～6/5 左右（以果實最美味階段進行採收），請勿催單。</li>
-            <li>採收期若有提早或延後，都會在 LINE（賴）上通知您。</li>
-          </ol>
-          <div style="margin-top: 10px; font-weight: bold;">感謝您的訂購與支持 🙏</div>
-        </div>
-
-        <!-- 促銷圖（70%寬桌機／手機100%） -->
-        <div class="promo-block" style="margin: 0 auto 28px auto;">
-          <img src="promo-banner.jpg" alt="大樹玉荷包促銷" loading="lazy" style="width: 100%; border-radius: 8px; display: block;">
+        <!-- 完售公告 -->
+        <div class="notice-block" style="margin: 0 auto 24px auto; padding: 18px 20px; background: #fff0f0; border: 2px solid #e74c3c; border-radius: 8px; font-size: 15px; color: #7b1a1a; line-height: 1.9; text-align: center;">
+          <div style="font-size: 22px; font-weight: bold; margin-bottom: 8px;">🍈 玉荷包已完售</div>
+          <div>若您要預約 2027 年玉荷包，<br>請留下您的資料，<br><strong>明年開賣會第一時間通知您喔！</strong></div>
+          <div style="margin-top: 10px; font-size: 13px; color: #a05050;">感謝您的支持 🙏</div>
         </div>
 
         <form id="orderForm" novalidate style="max-width: 500px; margin: 0 auto;">
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">訂購數量 *</label>
-            <select name="quantity" id="quantitySelect" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
-              <option value="">-- 請選擇 --</option>
-              <option value="1盒(須加運費160元)，共1,110元">1 盒（須加運費：160元），共 1,110 元</option>
-              <option value="2盒(免運)，共1,900元">2 盒（免運），共 1,900 元</option>
-              <option value="3盒(免運)，共2,850元">3 盒（免運），共 2,850 元</option>
-              <option value="4盒(免運)，共3,800元">4 盒（免運），共 3,800 元</option>
-              <option value="5盒(免運)，共4,750元">5 盒（免運），共 4,750 元</option>
-              <option value="6盒(免運再打9折)，共5,130元">6 盒（免運再打9折），共 5,130 元</option>
-              <option value="12盒(免運再打9折)，共10,260元">12 盒（免運再打9折），共 10,260 元</option>
-              <option value="18盒(免運再打9折)，共15,390元">18 盒（免運再打9折），共 15,390 元</option>
-              <option value="其他">其他（請於下方說明）</option>
-            </select>
-          </div>
 
-          <div id="quantityOther" style="display: none; margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">其他數量說明 *</label>
-            <input type="text" name="quantityOtherText" id="quantityOtherInput" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="請說明您的訂購需求">
+          <div style="margin-bottom: 20px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">姓名 *</label>
+            <input type="text" name="receiverName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="請輸入您的姓名">
           </div>
 
           <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">自用或送禮 *</label>
-            <select name="purpose" id="purposeSelect" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
-              <option value="">-- 請選擇 --</option>
-              <option value="自用">自用</option>
-              <option value="送禮">送禮</option>
-            </select>
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">手機號碼 *</label>
+            <input type="tel" name="receiverPhone" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="請輸入手機號碼">
           </div>
 
-          <div id="senderInfo" style="display: none; margin-bottom: 20px; padding: 15px; background: #f0f7f2; border: 1px solid #c3ddc8; border-radius: 6px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">寄件人姓名與聯絡手機(出貨會通知您) *</label>
-            <input type="text" name="sender" id="senderInput" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="例：陳大明 0912345678">
+          <div style="margin-bottom: 28px;">
+            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">電子郵件 E-mail <span style="font-weight: normal; color: #888; font-size: 13px;">（非必填）</span></label>
+            <input type="email" name="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="開賣時也會 E-mail 通知您">
           </div>
 
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">收件人姓名 *</label>
-            <input type="text" name="receiverName" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
-          </div>
-
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">收件人手機 *</label>
-            <input type="tel" name="receiverPhone" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
-          </div>
-
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">收件人地址 *</label>
-            <input type="text" name="address" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
-          </div>
-
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">電子郵件 E-mail <span style="font-weight: normal; color: #888; font-size: 13px;">（每年開賣會mail通知，非必填）</span></label>
-            <input type="email" name="email" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
-          </div>
-
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">方便收貨時間 *</label>
-            <select name="deliveryTime" required style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;">
-              <option value="">-- 請選擇 --</option>
-              <option value="平日">平日</option>
-              <option value="假日">假日</option>
-              <option value="平假日皆可">平假日皆可</option>
-            </select>
-          </div>
-
-          <div style="margin-bottom: 20px;">
-            <label style="display: block; margin-bottom: 8px; font-weight: bold; color: #333;">匯款帳號後五碼（對帳用）*</label>
-            <input type="text" name="bankCode" required maxlength="5" style="width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px; font-size: 14px;" placeholder="請輸入5碼">
-          </div>
-
-          <div style="margin-bottom: 24px;">
-            <img src="bank-info.jpg" alt="匯款帳號資訊" style="width: 100%; border-radius: 8px;">
-          </div>
-
-          <div id="validationMessage" style="display: none; margin-bottom: 16px; padding: 14px 16px; background: #fdecea; border: 2px solid #e74c3c; border-radius: 8px; color: #c0392b; font-size: 13px; font-weight: bold; text-align: center; white-space: nowrap;">
-            ⚠️ 您尚有必填欄位未填，請填妥後再送出訂單
+          <div id="validationMessage" style="display: none; margin-bottom: 16px; padding: 14px 16px; background: #fdecea; border: 2px solid #e74c3c; border-radius: 8px; color: #c0392b; font-size: 13px; font-weight: bold; text-align: center;">
+            ⚠️ 請填寫姓名與手機號碼
           </div>
 
           <button type="submit" id="submitBtn" style="width: 100%; padding: 15px; background: linear-gradient(135deg, #497552 0%, #497552 100%); color: white; border: none; border-radius: 6px; font-size: 16px; font-weight: bold; cursor: pointer; transition: transform 0.3s;">
-            送出訂單
+            登記預約 2027 年
           </button>
 
           <div id="successMessage" style="display: none; margin-top: 20px; padding: 15px; background: #d4edda; border: 1px solid #c3e6cb; border-radius: 6px; color: #155724; text-align: center;">
-            ✅ 訂單已送出！我們會盡快與您聯絡。
+            ✅ 已登記成功！明年開賣我們會第一時間通知您 🎉
           </div>
 
           <div id="errorMessage" style="display: none; margin-top: 20px; padding: 15px; background: #f8d7da; border: 1px solid #f5c6cb; border-radius: 6px; color: #721c24; text-align: center;">
@@ -776,38 +709,10 @@
   </section>
 
   <script>
-    // 其他數量時顯示說明欄位
-    document.getElementById('quantitySelect').addEventListener('change', function() {
-      const otherDiv = document.getElementById('quantityOther');
-      const otherInput = document.getElementById('quantityOtherInput');
-      if (this.value === '其他') {
-        otherDiv.style.display = 'block';
-        otherInput.required = true;
-      } else {
-        otherDiv.style.display = 'none';
-        otherInput.required = false;
-        otherInput.value = '';
-      }
-    });
-
-    // 送禮時顯示寄件人欄位
-    document.getElementById('purposeSelect').addEventListener('change', function() {
-      const senderInfo = document.getElementById('senderInfo');
-      const senderInput = document.getElementById('senderInput');
-      if (this.value === '送禮') {
-        senderInfo.style.display = 'block';
-        senderInput.required = true;
-      } else {
-        senderInfo.style.display = 'none';
-        senderInput.required = false;
-        senderInput.value = '';
-      }
-    });
-
     document.getElementById('orderForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      // 必填驗證
+      // 必填驗證（姓名、手機）
       const requiredFields = this.querySelectorAll('[required]');
       let allFilled = true;
       requiredFields.forEach(function(field) {
@@ -826,24 +731,23 @@
       }
       document.getElementById('validationMessage').style.display = 'none';
 
-      // 立即顯示送出中狀態
+      // 顯示送出中狀態
       var btn = document.getElementById('submitBtn');
       btn.disabled = true;
-      btn.textContent = '送出中...';
+      btn.textContent = '登記中...';
       btn.style.opacity = '0.7';
       btn.style.cursor = 'not-allowed';
 
-      const qtyVal = document.querySelector('select[name="quantity"]').value;
       const formData = {
-        quantity: qtyVal === '其他' ? '其他：' + document.querySelector('input[name="quantityOtherText"]').value : qtyVal,
-        purpose: document.querySelector('select[name="purpose"]').value,
-        sender: document.querySelector('input[name="sender"]').value,
+        quantity: '2027預約登記',
+        purpose: '',
+        sender: '',
         receiverName: document.querySelector('input[name="receiverName"]').value,
         receiverPhone: document.querySelector('input[name="receiverPhone"]').value,
-        address: document.querySelector('input[name="address"]').value,
+        address: '',
         email: document.querySelector('input[name="email"]').value,
-        deliveryTime: document.querySelector('select[name="deliveryTime"]').value,
-        bankCode: document.querySelector('input[name="bankCode"]').value
+        deliveryTime: '',
+        bankCode: ''
       };
 
       const scriptUrl = 'https://script.google.com/macros/s/AKfycbzBtuScp8_kJSe4H4DJoP1ww8PVII6SQJdtT9OPyrnzvmIqfS3WCWBFekQJEBJWDWRH/exec';
@@ -851,13 +755,11 @@
       const callbackName = 'cb_' + Date.now();
       const script = document.createElement('script');
 
-      // GAS 回應後跳轉（確保資料已寫入）
       window[callbackName] = function() {
         delete window[callbackName];
         window.location.href = 'thankyou.html';
       };
 
-      // 若 GAS 無回應，最多等 8 秒後仍跳轉
       var fallbackTimer = setTimeout(function() {
         window.location.href = 'thankyou.html';
       }, 8000);
@@ -866,7 +768,7 @@
         clearTimeout(fallbackTimer);
         delete window[callbackName];
         btn.disabled = false;
-        btn.textContent = '送出訂單';
+        btn.textContent = '登記預約 2027 年';
         btn.style.opacity = '1';
         btn.style.cursor = 'pointer';
         document.getElementById('errorMessage').style.display = 'block';
