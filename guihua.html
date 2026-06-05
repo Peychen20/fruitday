@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>桂花蜜荔限量預購 | 陳家嚴選-鮮果好日</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+      color: #333;
+      background: #fafaf8;
+      padding-top: 52px;
+    }
+
+    /* 宣傳條 */
+    .promo {
+      background: #7b3f00;
+      color: white;
+      padding: 8px 30px;
+      text-align: center;
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 101;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+    .promo h2 { font-size: 14px; margin-bottom: 3px; }
+    .promo p  { font-size: 11px; opacity: 0.9; }
+
+    /* 導航 */
+    header {
+      background: white;
+      padding: 0;
+      position: fixed;
+      top: 52px; left: 0; right: 0;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    }
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 30px;
+    }
+    .logo img { height: 36px; }
+    .nav-links { display: flex; gap: 24px; list-style: none; }
+    .nav-links a { text-decoration: none; color: #555; font-size: 14px; font-weight: 500; }
+    .nav-links a:hover { color: #7b3f00; }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #7b3f00 0%, #a0522d 50%, #c8763a 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px 50px;
+    }
+    .hero .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1.5px solid rgba(255,255,255,0.5);
+      border-radius: 100px;
+      padding: 5px 18px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-bottom: 14px;
+    }
+    .hero h1 { font-size: 36px; font-weight: 900; letter-spacing: 2px; margin-bottom: 10px; }
+    .hero p { font-size: 15px; opacity: 0.9; line-height: 1.8; }
+
+    /* 限量倒數條 */
+    .limit-bar {
+      background: #fff8f0;
+      border-bottom: 2px solid #f0a500;
+      padding: 14px 20px;
+      text-align: center;
+    }
+    .limit-bar .inner {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      color: #7b3f00;
+    }
+    .limit-bar .num {
+      background: #e74c3c;
+      color: white;
+      border-radius: 6px;
+      padding: 3px 12px;
+      font-size: 18px;
+    }
+
+    /* 相片牆 */
+    .gallery {
+      max-width: 900px;
+      margin: 40px auto 0;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 10px;
+    }
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+      display: block;
+    }
+    .gallery .main-img { grid-row: 1 / 3; height: 420px; }
+    .gallery .sub-img  { height: 205px; }
+
+    /* 產品說明 */
+    .product-detail {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+    .detail-card {
+      background: white;
+      border-radius: 12px;
+      padding: 24px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+    }
+    .detail-card h3 {
+      font-size: 16px;
+      color: #7b3f00;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid #f0e0cc;
+    }
+    .detail-card p, .detail-card li {
+      font-size: 14px;
+      line-height: 2;
+      color: #555;
+    }
+    .detail-card ul { padding-left: 18px; }
+
+    /* 定價區 */
+    .pricing {
+      max-width: 900px;
+      margin: 0 auto 40px;
+      padding: 0 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .price-card {
+      background: white;
+      border: 2px solid #f0e0cc;
+      border-radius: 12px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .price-card:hover { border-color: #a0522d; transform: translateY(-2px); }
+    .price-card.featured { border-color: #e74c3c; background: #fff8f0; }
+    .price-card .tag {
+      display: inline-block;
+      background: #e74c3c;
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 10px;
+      border-radius: 100px;
+      margin-bottom: 10px;
+    }
+    .price-card h4 { font-size: 17px; color: #333; margin-bottom: 6px; }
+    .price-card .price { font-size: 30px; font-weight: 900; color: #7b3f00; }
+    .price-card .price span { font-size: 14px; font-weight: normal; }
+    .price-card .note { font-size: 12px; color: #888; margin-top: 6px; }
+
+    /* 表單區 */
+    .form-section {
+      background: linear-gradient(135deg, #f8f4f0 0%, #fff 100%);
+      padding: 60px 20px;
+    }
+    .form-container {
+      max-width: 620px;
+      margin: 0 auto;
+    }
+    .form-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .form-header h2 { font-size: 26px; font-weight: 900; color: #7b3f00; margin-bottom: 6px; }
+    .form-header p  { font-size: 14px; color: #888; }
+
+    .form-group { margin-bottom: 20px; }
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #333;
+      font-size: 14px;
+    }
+    .form-group input,
+    .form-group select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      background: white;
+    }
+    .form-group input:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: #a0522d;
+      box-shadow: 0 0 0 3px rgba(160,82,45,0.1);
+    }
+
+    .notice-box {
+      background: #fff8e1;
+      border: 1.5px solid #f0a500;
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 24px;
+      font-size: 13px;
+      color: #5a3e00;
+      line-height: 1.9;
+    }
+
+    .submit-btn {
+      width: 100%;
+      padding: 16px;
+      background: linear-gradient(135deg, #7b3f00, #a0522d);
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(123,63,0,0.3);
+    }
+    .submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(123,63,0,0.4);
+    }
+    .submit-btn:disabled { opacity: 0.7; cursor: not-allowed; }
+
+    /* 頁腳 */
+    footer {
+      background: #2c2c2c;
+      color: #ccc;
+      padding: 40px 30px 20px;
+    }
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      margin-bottom: 20px;
+    }
+    .footer-section h3 { color: white; margin-bottom: 12px; font-size: 15px; }
+    .footer-section p, .footer-section a {
+      display: block;
+      font-size: 13px;
+      color: #aaa;
+      text-decoration: none;
+      margin-bottom: 6px;
+    }
+    .footer-section a:hover { color: white; }
+    .footer-bottom { text-align: center; font-size: 12px; color: #666; padding-top: 16px; border-top: 1px solid #444; }
+
+    @media (max-width: 700px) {
+      .gallery { grid-template-columns: 1fr; }
+      .gallery .main-img { height: 260px; grid-row: auto; }
+      .gallery .sub-img  { height: 180px; }
+      .product-detail, .pricing { grid-template-columns: 1fr; }
+      .hero h1 { font-size: 26px; }
+      .footer-content { grid-template-columns: 1fr; gap: 20px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="promo">
+    <h2>🌺 桂花蜜荔 限量50盒開放預購中</h2>
+    <p>每盒5斤 1,250元・免運直送・小核多汁・數量有限搶先預訂</p>
+  </div>
+
+  <header>
+    <nav>
+      <div class="logo">
+        <a href="index.html"><img src="logo.png" alt="陳家嚴選-鮮果好日"></a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html#about">關於我們</a></li>
+        <li><a href="index.html#products">產品介紹</a></li>
+        <li><a href="#order">立即預購</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="badge">🍈 限量 50 盒・產地直送</div>
+    <h1>桂花蜜荔</h1>
+    <p>小核大果・蜜甜多汁・桂花般清香<br>高雄大樹嚴選，數量有限，售完為止</p>
+  </section>
+
+  <!-- 限量倒數 -->
+  <div class="limit-bar">
+    <div class="inner">
+      🔥 本批限量
+      <span class="num">50</span>
+      盒，售完即止，把握機會！
+    </div>
+  </div>
+
+  <!-- 相片牆 -->
+  <div class="gallery">
+    <img src="GUIHUA1.jpg" alt="桂花蜜荔果肉" class="main-img">
+    <img src="GUIHUA2.jpg" alt="桂花蜜荔整顆" class="sub-img">
+    <img src="GUIHUA4.jpg" alt="桂花蜜荔剖開" class="sub-img">
+  </div>
+
+  <!-- 產品說明 -->
+  <div class="product-detail">
+    <div class="detail-card">
+      <h3>🌺 品種特色</h3>
+      <ul>
+        <li>品種：桂花蜜荔（高雄大樹產區）</li>
+        <li>特色：小核大果，果肉厚實飽滿</li>
+        <li>風味：蜜甜清香，帶桂花般淡雅香氣</li>
+        <li>口感：細緻多汁，甜而不膩</li>
+        <li>規格：每盒約5斤（含枝葉重）</li>
+      </ul>
+    </div>
+    <div class="detail-card">
+      <h3>📦 訂購說明</h3>
+      <ul>
+        <li>限量50盒，售完即止</li>
+        <li>下單後請匯款完成對帳</li>
+        <li>採收後當日出貨，確保新鮮</li>
+        <li>配送方式：冷藏宅配</li>
+        <li>收到後請盡快食用（2～3天內最佳）</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- 定價 -->
+  <div class="pricing">
+    <div class="price-card">
+      <h4>1 盒（5斤）</h4>
+      <div class="price">1,250 <span>元</span></div>
+      <div class="note">✅ 免運費直送</div>
+    </div>
+    <div class="price-card featured">
+      <div class="tag">最划算</div>
+      <h4>2 盒（同地址）</h4>
+      <div class="price">2,400 <span>元</span></div>
+      <div class="note">✅ 免運 ＋ 再折 100 元</div>
+    </div>
+  </div>
+
+  <!-- 訂購表單 -->
+  <section class="form-section" id="order">
+    <div class="form-container">
+      <div class="form-header">
+        <h2>桂花蜜荔預購表單</h2>
+        <p>填寫完成後請完成匯款，對帳後即排單出貨</p>
+      </div>
+
+      <div class="notice-box">
+        <strong>⚠️ 下單前請注意：</strong><br>
+        1. 本批桂花蜜荔限量 <strong>50 盒</strong>，售完即關閉訂購。<br>
+        2. 下單匯款後，請加 LINE 官方帳號告知對帳。<br>
+        3. 採收期依果實狀況調整，出貨前會以 LINE 通知您。<br>
+        感謝您的支持 🙏
+      </div>
+
+      <form id="guihuaForm" novalidate>
+
+        <div class="form-group">
+          <label>訂購數量 *</label>
+          <select name="quantity" required>
+            <option value="">-- 請選擇 --</option>
+            <option value="桂花蜜荔 1盒(5斤，1,250元，免運)">1 盒（5斤，1,250元，免運）</option>
+            <option value="桂花蜜荔 2盒(同地址，2,400元，折100元)">2 盒（同地址，2,400元，折100元）</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>自用或送禮 *</label>
+          <select name="purpose" id="purposeSelect" required>
+            <option value="">-- 請選擇 --</option>
+            <option value="自用">自用</option>
+            <option value="送禮">送禮</option>
+          </select>
+        </div>
+
+        <div id="senderInfo" style="display:none; margin-bottom:20px; padding:15px; background:#f9f3ee; border:1px solid #d4b08a; border-radius:8px;">
+          <label style="display:block; margin-bottom:8px; font-weight:bold; color:#333; font-size:14px;">寄件人姓名與聯絡手機（出貨會通知您）*</label>
+          <input type="text" name="sender" id="senderInput" placeholder="例：陳大明 0912345678" style="width:100%; padding:12px; border:1px solid #ddd; border-radius:8px; font-size:14px;">
+        </div>
+
+        <div class="form-group">
+          <label>收件人姓名 *</label>
+          <input type="text" name="receiverName" required placeholder="請輸入收件人姓名">
+        </div>
+
+        <div class="form-group">
+          <label>收件人手機 *</label>
+          <input type="tel" name="receiverPhone" required placeholder="請輸入手機號碼">
+        </div>
+
+        <div class="form-group">
+          <label>收件人地址 *</label>
+          <input type="text" name="address" required placeholder="請輸入完整收件地址">
+        </div>
+
+        <div class="form-group">
+          <label>電子郵件 E-mail <span style="font-weight:normal; color:#aaa; font-size:12px;">（非必填）</span></label>
+          <input type="email" name="email" placeholder="方便我們以 Email 通知您">
+        </div>
+
+        <div class="form-group">
+          <label>方便收貨時間 *</label>
+          <select name="deliveryTime" required>
+            <option value="">-- 請選擇 --</option>
+            <option value="平日">平日</option>
+            <option value="假日">假日</option>
+            <option value="平假日皆可">平假日皆可</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label>匯款帳號後五碼（對帳用）*</label>
+          <input type="text" name="bankCode" required maxlength="5" placeholder="請輸入5碼">
+        </div>
+
+        <div style="margin-bottom:24px;">
+          <img src="bank-info.jpg" alt="匯款帳號資訊" style="width:100%; border-radius:8px;">
+        </div>
+
+        <div id="validationMessage" style="display:none; margin-bottom:16px; padding:14px 16px; background:#fdecea; border:2px solid #e74c3c; border-radius:8px; color:#c0392b; font-size:13px; font-weight:bold; text-align:center;">
+          ⚠️ 您尚有必填欄位未填，請填妥後再送出
+        </div>
+
+        <button type="submit" id="submitBtn" class="submit-btn">
+          🍈 立即預購桂花蜜荔
+        </button>
+
+        <div id="errorMessage" style="display:none; margin-top:20px; padding:15px; background:#f8d7da; border:1px solid #f5c6cb; border-radius:8px; color:#721c24; text-align:center;">
+          ❌ 送出失敗，請稍後重試。
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- 浮動 LINE 按鈕 -->
+  <a href="https://lin.ee/OdJucNf" target="_blank" rel="noopener"
+     style="position:fixed; right:20px; bottom:24px; z-index:999;
+            display:flex; align-items:center; gap:0;
+            background:#06c755; border-radius:100px;
+            box-shadow:0 4px 18px rgba(6,199,85,0.45), 0 2px 8px rgba(0,0,0,0.2);
+            text-decoration:none; overflow:hidden; transition:transform 0.2s, box-shadow 0.2s;"
+     onmouseover="this.style.transform='translateY(-2px)'"
+     onmouseout="this.style.transform='translateY(0)'">
+    <span style="color:white; font-size:15px; font-weight:bold; padding:13px 16px 13px 20px; letter-spacing:1px;">線上客服</span>
+    <span style="background:rgba(0,0,0,0.15); height:100%; display:flex; align-items:center; padding:8px 12px;">
+      <img src="line-icon.png" alt="LINE" style="width:36px; height:36px; object-fit:contain; display:block;">
+    </span>
+  </a>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-section">
+        <h3><img src="logo.png" alt="logo" style="height:28px; vertical-align:middle; margin-right:6px;"> 陳家嚴選-鮮果好日</h3>
+        <p>新鮮水果直送到家</p>
+        <p>讓您享受最天然的滋味</p>
+      </div>
+      <div class="footer-section">
+        <h3>聯絡方式</h3>
+        <a href="tel:0986716209">電話：0986-716-209</a>
+        <a href="mailto:fruitday52@gmail.com">信箱：fruitday52@gmail.com</a>
+      </div>
+      <div class="footer-section">
+        <h3>快速連結</h3>
+        <a href="index.html">回首頁</a>
+        <a href="index.html#products">產品介紹</a>
+        <a href="https://lin.ee/OdJucNf" target="_blank" rel="noopener">LINE 官方帳號</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 FruitDay. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // 送禮時顯示寄件人欄位
+    document.getElementById('purposeSelect').addEventListener('change', function() {
+      const senderInfo = document.getElementById('senderInfo');
+      const senderInput = document.getElementById('senderInput');
+      if (this.value === '送禮') {
+        senderInfo.style.display = 'block';
+        senderInput.required = true;
+      } else {
+        senderInfo.style.display = 'none';
+        senderInput.required = false;
+        senderInput.value = '';
+      }
+    });
+
+    document.getElementById('guihuaForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // 必填驗證
+      const requiredFields = this.querySelectorAll('[required]');
+      let allFilled = true;
+      requiredFields.forEach(function(field) {
+        if (!field.value.trim()) {
+          allFilled = false;
+          field.style.border = '2px solid #e74c3c';
+        } else {
+          field.style.border = '1px solid #ddd';
+        }
+      });
+      if (!allFilled) {
+        const msg = document.getElementById('validationMessage');
+        msg.style.display = 'block';
+        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        return;
+      }
+      document.getElementById('validationMessage').style.display = 'none';
+
+      var btn = document.getElementById('submitBtn');
+      btn.disabled = true;
+      btn.textContent = '送出中...';
+      btn.style.opacity = '0.7';
+
+      const formData = {
+        quantity: document.querySelector('select[name="quantity"]').value,
+        purpose: document.querySelector('select[name="purpose"]').value,
+        sender: document.querySelector('input[name="sender"]') ? document.querySelector('input[name="sender"]').value : '',
+        receiverName: document.querySelector('input[name="receiverName"]').value,
+        receiverPhone: document.querySelector('input[name="receiverPhone"]').value,
+        address: document.querySelector('input[name="address"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        deliveryTime: document.querySelector('select[name="deliveryTime"]').value,
+        bankCode: document.querySelector('input[name="bankCode"]').value
+      };
+
+      const scriptUrl = 'https://script.google.com/macros/s/AKfycbzBtuScp8_kJSe4H4DJoP1ww8PVII6SQJdtT9OPyrnzvmIqfS3WCWBFekQJEBJWDWRH/exec';
+      const callbackName = 'cb_' + Date.now();
+      const script = document.createElement('script');
+
+      window[callbackName] = function() {
+        delete window[callbackName];
+        window.location.href = 'thankyou-guihua.html';
+      };
+
+      var fallbackTimer = setTimeout(function() {
+        window.location.href = 'thankyou-guihua.html';
+      }, 8000);
+
+      script.onerror = function() {
+        clearTimeout(fallbackTimer);
+        delete window[callbackName];
+        btn.disabled = false;
+        btn.textContent = '🍈 立即預購桂花蜜荔';
+        btn.style.opacity = '1';
+        document.getElementById('errorMessage').style.display = 'block';
+      };
+
+      const params = new URLSearchParams({
+        callback: callbackName,
+        data: JSON.stringify(formData)
+      });
+
+      script.src = scriptUrl + '?' + params.toString();
+      document.body.appendChild(script);
+    });
+  </script>
+
+</body>
+</html>
